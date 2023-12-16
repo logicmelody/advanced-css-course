@@ -1,14 +1,42 @@
 .card {
+	position: relative;
 	perspective: 150rem;
 	-moz-perspective: 150rem;
+	height: 50rem;
 
 	&__side {
-		background-color: orangered;
+		// 這邊設定成 absolute 會導致 parent 的 card height 變成 0，跟設定 float property 一樣
+		position: absolute;
+		color: white;
+		font-size: 2rem;
+		width: 100%;
 		height: 50rem;
-		transition: all .5s;
+		transition: all .8s ease;
+		top: 0;
+		left: 0;
+		backface-visibility: hidden;
+		border-radius: 3px;
+		box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+		&--front {
+			background-color: $color-white;
+		}
+
+		&--back {
+			transform: rotateY(180deg);
+
+			&-1 {
+				background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+			}
+		}
 	}
 
-	&:hover &__side {
+	// .card:hover .card__side
+	&:hover &__side--front {
 		transform: rotateY(180deg);
+	}
+
+	&:hover &__side--back {
+		transform: rotateY(0);
 	}
 }
