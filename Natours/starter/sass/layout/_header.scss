@@ -10,11 +10,15 @@
 
 	&__logo-box {
 		position: absolute;
+
+		// 以 parent 當作參考點，parent 必須要設定 position: relative property
 		top: 4rem;
 		left: 4rem;
 	}
 
 	&__logo {
+		// width 會交給 browser 自動 scale
+		// 這邊也可以只設定 width，height 交給 browser 自動 scale
 		height: 3.5rem;
 	}
 
@@ -22,6 +26,8 @@
 		position: absolute;
 		top: 40%;
 		left: 50%;
+
+		// translate 的計算是用 element 本身的 width 跟 height
 		transform: translate(-50%, -50%);
 		text-align: center;
 	}
