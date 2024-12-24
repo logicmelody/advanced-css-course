@@ -1,4 +1,6 @@
 .btn {
+	// : 代表 pseudo-class，通常會利用它在某些特殊情況來 style element
+	// 這邊的 :link 跟 :visited 是 <a> 的 pseudo-class
 	&:link,
 	&:visited {
 		text-transform: uppercase;
@@ -6,7 +8,7 @@
 		padding: 1.5rem 4rem;
 		display: inline-block;
 		border-radius: 10rem;
-		transition: all .2s;
+		transition: all .2s; // 必須加在 initial state
 		position: relative;
 		font-size: $default-font-size;
 	}
@@ -26,9 +28,10 @@
 		box-shadow: 0 .5rem 1rem rgba($color-black, .2);
 	}
 
+	// 這邊的設定是讓 pseudo element 跟原始的 button 一樣
 	&::after {
-		content: '';
-		display: inline-block;
+		content: ''; // pseudo element 一定要加這個 property，不然不會顯示出來
+		display: inline-block; // pseudo element 一定要加這個 property，不然不會顯示出來
 		width: 100%;
 		height: 100%;
 		border-radius: 10rem;
@@ -50,7 +53,7 @@
 
 	&--animated {
 		animation: moveInBottom .5s ease-out .75s;
-		animation-fill-mode: backwards;
+		animation-fill-mode: backwards; // 可以讓 element 直接從 animation 0% 的時候開始
 	}
 }
 
