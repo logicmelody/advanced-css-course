@@ -80,6 +80,10 @@ body {
 	font-weight: 700;
 	letter-spacing: 17.4px;
 
+	/* Note: 設定動畫的方式
+		- @keyframes and animation
+		- transform and transition
+	*/
 	animation: moveInRight 1s ease-out;
 }
 
@@ -120,6 +124,18 @@ body {
 	}
 }
 
+@keyframes moveInBottom {
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
 /*
 	Note: 用 pseudo-class 可以對 element 的各個不同的狀態設定 style
 	EX: hover, select a last child, ...
@@ -132,6 +148,7 @@ body {
 	padding: 15px 40px;
 	border-radius: 100px;
 	transition: all .2s;
+	position: relative;
 }
 
 .btn:hover {
@@ -150,4 +167,38 @@ body {
 .btn-white {
 	background-color: #fff;
 	color: #777;
+}
+
+.btn::after {
+	/*
+		Note: 一定要設定 content 這個屬性，pseudo-element 才會出現在畫面上
+	*/
+	content: "";
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	border-radius: 100px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	transition: all .4s;
+}
+
+.btn-white::after {
+	background-color: #fff;
+}
+
+.btn:hover::after {
+	transform: scaleX(1.4) scaleY(1.6);
+	opacity: 0;
+}
+
+.btn-animated {
+	animation: moveInBottom .5s ease-out .75s;
+
+	/*
+		Note: The animation will apply the values defined in the first relevant keyframe as soon as it is applied to the target, and retain this during the animation-delay period.
+	*/
+	animation-fill-mode: backwards;
 }
